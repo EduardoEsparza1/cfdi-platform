@@ -4,10 +4,19 @@ name: CFDI Platform CI
 on:
   pull_request:
     branches:
-      - main
+      - develop
+      - integraciones
+      - preprod
+      - produccion
+      - master
+
   push:
     branches:
-      - main
+      - develop
+      - integraciones
+      - preprod
+      - produccion
+      - master
 
 permissions:
   contents: read
