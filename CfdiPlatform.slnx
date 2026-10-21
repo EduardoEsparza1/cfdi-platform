@@ -6,4 +6,7 @@
     <Project Path="src/backend/CfdiPlatform.Domain/CfdiPlatform.Domain.csproj" />
     <Project Path="src/backend/CfdiPlatform.Infrastructure/CfdiPlatform.Infrastructure.csproj" Id="6fb26d96-0e8f-4033-9618-da466ce50e4d" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CfdiPlatform.Domain.UnitTests/CfdiPlatform.Domain.UnitTests.csproj" Id="9f29cf90-416d-4e70-92f9-d7ff73097c63" />
+  </Folder>
 </Solution>
