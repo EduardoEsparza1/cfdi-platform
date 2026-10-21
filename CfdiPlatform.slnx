@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/backend/">
+    <Project Path="src/backend/CfdiPlatform.Api/CfdiPlatform.Api.csproj" Id="532f8b2d-73cf-4ce2-a094-1fe52334d5e7" />
+    <Project Path="src/backend/CfdiPlatform.Application/CfdiPlatform.Application.csproj" />
+    <Project Path="src/backend/CfdiPlatform.Domain/CfdiPlatform.Domain.csproj" />
+    <Project Path="src/backend/CfdiPlatform.Infrastructure/CfdiPlatform.Infrastructure.csproj" Id="6fb26d96-0e8f-4033-9618-da466ce50e4d" />
+  </Folder>
+</Solution>
