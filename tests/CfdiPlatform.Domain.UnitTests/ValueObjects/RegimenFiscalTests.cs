@@ -15,7 +15,6 @@ public class RegimenFiscalTests
     public void Create_WithValidFormat_ShouldSucceed(string value)
     {
         var regimen = RegimenFiscal.Create(value);
-
         Assert.Equal(value, regimen.Value);
     }
 
@@ -29,22 +28,19 @@ public class RegimenFiscalTests
     [InlineData("6 1")]
     public void Create_WithInvalidFormat_ShouldThrow(string value)
     {
-        Assert.Throws<ArgumentException>(() =>
-            RegimenFiscal.Create(value));
+        Assert.Throws<ArgumentException>(() => RegimenFiscal.Create(value));
     }
 
     [Fact]
     public void Create_WithNull_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() =>
-            RegimenFiscal.Create(null));
+        Assert.Throws<ArgumentException>(() => RegimenFiscal.Create(null));
     }
 
     [Fact]
     public void Create_WithSurroundingSpaces_ShouldTrim()
     {
         var regimen = RegimenFiscal.Create("  601  ");
-
         Assert.Equal("601", regimen.Value);
     }
 
@@ -53,7 +49,6 @@ public class RegimenFiscalTests
     {
         var first = RegimenFiscal.Create("601");
         var second = RegimenFiscal.Create("601");
-
         Assert.Equal(first, second);
     }
 
@@ -62,7 +57,6 @@ public class RegimenFiscalTests
     {
         var first = RegimenFiscal.Create("601");
         var second = RegimenFiscal.Create("603");
-
         Assert.NotEqual(first, second);
     }
 
@@ -70,7 +64,6 @@ public class RegimenFiscalTests
     public void ToString_ShouldReturnValue()
     {
         var regimen = RegimenFiscal.Create("601");
-
         Assert.Equal("601", regimen.ToString());
     }
 }

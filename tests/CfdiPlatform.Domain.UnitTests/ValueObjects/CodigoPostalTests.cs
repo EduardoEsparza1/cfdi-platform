@@ -14,7 +14,6 @@ public class CodigoPostalTests
     public void Create_WithFiveDigits_ShouldSucceed(string value)
     {
         var codigoPostal = CodigoPostal.Create(value);
-
         Assert.Equal(value, codigoPostal.Value);
     }
 
@@ -43,7 +42,6 @@ public class CodigoPostalTests
     public void Create_WithSurroundingSpaces_ShouldTrim()
     {
         var codigoPostal = CodigoPostal.Create("  20000  ");
-
         Assert.Equal("20000", codigoPostal.Value);
     }
 
