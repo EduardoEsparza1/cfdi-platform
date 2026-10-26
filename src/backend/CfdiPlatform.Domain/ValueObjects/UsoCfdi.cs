@@ -17,9 +17,7 @@ public sealed record UsoCfdi
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentException(
-                "El uso del CFDI es obligatorio.",
-                nameof(value));
+            throw new ArgumentException("El uso del CFDI es obligatorio.", nameof(value));
         }
 
         var normalized = value.Trim().ToUpperInvariant();
@@ -34,9 +32,7 @@ public sealed record UsoCfdi
 
         if (!formatoValido)
         {
-            throw new ArgumentException(
-                "El formato del uso del CFDI no es válido.",
-                nameof(value));
+            throw new ArgumentException("El formato del uso del CFDI no es válido.", nameof(value));
         }
 
         return new UsoCfdi(normalized);

@@ -17,19 +17,14 @@ public sealed record RegimenFiscal
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new ArgumentException(
-                "El régimen fiscal es obligatorio.",
-                nameof(value));
+            throw new ArgumentException("El régimen fiscal es obligatorio.", nameof(value));
         }
 
         var normalized = value.Trim();
 
-        if (normalized.Length != 3 ||
-            !normalized.All(c => c >= '0' && c <= '9'))
+        if (normalized.Length != 3 || !normalized.All(c => c >= '0' && c <= '9'))
         {
-            throw new ArgumentException(
-                "El régimen fiscal debe contener exactamente 3 dígitos.",
-                nameof(value));
+            throw new ArgumentException("El régimen fiscal debe contener exactamente 3 dígitos.", nameof(value));
         }
 
         return new RegimenFiscal(normalized);

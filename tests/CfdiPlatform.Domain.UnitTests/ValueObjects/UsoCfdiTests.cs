@@ -16,7 +16,6 @@ public class UsoCfdiTests
     public void Create_WithValidFormat_ShouldSucceed(string value)
     {
         var usoCfdi = UsoCfdi.Create(value);
-
         Assert.Equal(value, usoCfdi.Value);
     }
 
@@ -31,22 +30,19 @@ public class UsoCfdiTests
     [InlineData("G@1")]
     public void Create_WithInvalidFormat_ShouldThrow(string value)
     {
-        Assert.Throws<ArgumentException>(() =>
-            UsoCfdi.Create(value));
+        Assert.Throws<ArgumentException>(() => UsoCfdi.Create(value));
     }
 
     [Fact]
     public void Create_WithNull_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() =>
-            UsoCfdi.Create(null));
+        Assert.Throws<ArgumentException>(() => UsoCfdi.Create(null));
     }
 
     [Fact]
     public void Create_WithSurroundingSpaces_ShouldTrim()
     {
         var usoCfdi = UsoCfdi.Create("  G03  ");
-
         Assert.Equal("G03", usoCfdi.Value);
     }
 
@@ -54,7 +50,6 @@ public class UsoCfdiTests
     public void Create_WithLowercase_ShouldNormalizeToUppercase()
     {
         var usoCfdi = UsoCfdi.Create("g03");
-
         Assert.Equal("G03", usoCfdi.Value);
     }
 
@@ -63,7 +58,6 @@ public class UsoCfdiTests
     {
         var first = UsoCfdi.Create("G03");
         var second = UsoCfdi.Create("G03");
-
         Assert.Equal(first, second);
     }
 
@@ -72,7 +66,6 @@ public class UsoCfdiTests
     {
         var first = UsoCfdi.Create("G01");
         var second = UsoCfdi.Create("G03");
-
         Assert.NotEqual(first, second);
     }
 
@@ -80,7 +73,6 @@ public class UsoCfdiTests
     public void ToString_ShouldReturnValue()
     {
         var usoCfdi = UsoCfdi.Create("G03");
-
         Assert.Equal("G03", usoCfdi.ToString());
     }
 }

@@ -18,7 +18,6 @@ public class ReceptorTests
     public void Create_WithValidData_ShouldCreateReceptor()
     {
         var receptor = CrearReceptorValido();
-
         Assert.NotEqual(Guid.Empty, receptor.Id);
         Assert.Equal(RfcValido, receptor.Rfc);
         Assert.Equal("EMPRESA DE PRUEBA", receptor.Nombre);
@@ -31,77 +30,46 @@ public class ReceptorTests
     [InlineData("   ")]
     public void Create_WithInvalidNombre_ShouldThrow(string nombre)
     {
-        Assert.Throws<ArgumentException>(() =>
-            Receptor.Create(
-                RfcValido,
-                nombre,
-                CpValido,
-                RegimenValido));
+        Assert.Throws<ArgumentException>(() => Receptor.Create(RfcValido, nombre, CpValido, RegimenValido));
     }
 
     [Fact]
     public void Create_WithNullNombre_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() =>
-            Receptor.Create(
-                RfcValido,
-                null!,
-                CpValido,
-                RegimenValido));
+        Assert.Throws<ArgumentException>(() => Receptor.Create(RfcValido, null!, CpValido, RegimenValido));
     }
 
     [Fact]
     public void Create_WithSurroundingSpaces_ShouldTrimNombre()
     {
-        var receptor = Receptor.Create(
-            RfcValido,
-            "  EMPRESA DE PRUEBA  ",
-            CpValido,
-            RegimenValido);
-
+        var receptor = Receptor.Create(RfcValido, "  EMPRESA DE PRUEBA  ", CpValido, RegimenValido);
         Assert.Equal("EMPRESA DE PRUEBA", receptor.Nombre);
     }
 
     [Fact]
     public void Create_WithNullRfc_ShouldThrow()
     {
-        Assert.Throws<ArgumentNullException>(() =>
-            Receptor.Create(
-                null!,
-                "EMPRESA DE PRUEBA",
-                CpValido,
-                RegimenValido));
+        Assert.Throws<ArgumentNullException>(() => Receptor.Create(null!, "EMPRESA DE PRUEBA", CpValido, RegimenValido));
     }
 
     [Fact]
     public void Create_WithNullDomicilioFiscal_ShouldThrow()
     {
-        Assert.Throws<ArgumentNullException>(() =>
-            Receptor.Create(
-                RfcValido,
-                "EMPRESA DE PRUEBA",
-                null!,
-                RegimenValido));
+        Assert.Throws<ArgumentNullException>(() => Receptor.Create(RfcValido, "EMPRESA DE PRUEBA", null!, RegimenValido));
     }
 
     [Fact]
     public void Create_WithNullRegimenFiscal_ShouldThrow()
     {
         Assert.Throws<ArgumentNullException>(() =>
-        Receptor.Create(
-            RfcValido,
-            "EMPRESA DE PRUEBA",
-            CpValido,
-            null!));
+        Receptor.Create(RfcValido, "EMPRESA DE PRUEBA", CpValido, null!));
     }
 
     [Fact]
     public void UpdateNombre_WithValidValue_ShouldUpdate()
     {
         var receptor = CrearReceptorValido();
-
         receptor.ActualizarNombre("NUEVA RAZON SOCIAL");
-
         Assert.Equal("NUEVA RAZON SOCIAL", receptor.Nombre);
     }
 
@@ -109,10 +77,7 @@ public class ReceptorTests
     public void UpdateNombre_WithInvalidValue_ShouldPreserveOriginal()
     {
         var receptor = CrearReceptorValido();
-
-        Assert.Throws<ArgumentException>(() =>
-            receptor.ActualizarNombre(""));
-
+        Assert.Throws<ArgumentException>(() => receptor.ActualizarNombre(""));
         Assert.Equal("EMPRESA DE PRUEBA", receptor.Nombre);
     }
 
@@ -121,16 +86,11 @@ public class ReceptorTests
     {
         var primero = CrearReceptorValido();
         var segundo = CrearReceptorValido();
-
         Assert.NotEqual(primero.Id, segundo.Id);
     }
 
     private static Receptor CrearReceptorValido()
     {
-        return Receptor.Create(
-            RfcValido,
-            "EMPRESA DE PRUEBA",
-            CpValido,
-            RegimenValido);
+        return Receptor.Create(RfcValido,"EMPRESA DE PRUEBA", CpValido, RegimenValido);
     }
 }
