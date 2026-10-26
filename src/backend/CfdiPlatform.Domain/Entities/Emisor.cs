@@ -17,12 +17,7 @@ public sealed class Emisor
 
     public CodigoPostal CodigoPostal { get; private set; }
 
-    private Emisor(
-        Guid id,
-        Rfc rfc,
-        string nombre,
-        RegimenFiscal regimenFiscal,
-        CodigoPostal codigoPostal)
+    private Emisor(Guid id, Rfc rfc, string nombre, RegimenFiscal regimenFiscal, CodigoPostal codigoPostal)
     {
         Id = id;
         Rfc = rfc;
@@ -31,22 +26,13 @@ public sealed class Emisor
         CodigoPostal = codigoPostal;
     }
 
-    public static Emisor Create(
-        Rfc rfc,
-        string nombre,
-        RegimenFiscal regimenFiscal,
-        CodigoPostal codigoPostal)
+    public static Emisor Create(Rfc rfc, string nombre, RegimenFiscal regimenFiscal, CodigoPostal codigoPostal)
     {
         ArgumentNullException.ThrowIfNull(rfc);
         ArgumentNullException.ThrowIfNull(regimenFiscal);
         ArgumentNullException.ThrowIfNull(codigoPostal);
 
-        return new Emisor(
-            Guid.NewGuid(),
-            rfc,
-            ValidarNombre(nombre),
-            regimenFiscal,
-            codigoPostal);
+        return new Emisor(Guid.NewGuid(), rfc, ValidarNombre(nombre), regimenFiscal, codigoPostal);
     }
 
     public void ActualizarNombre(string nombre)

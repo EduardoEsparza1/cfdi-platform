@@ -13,7 +13,6 @@ public class RfcTests
     public void Create_WithValidRfc_ShouldSucceed(string value)
     {
         var rfc = Rfc.Create(value);
-
         Assert.Equal(value, rfc.Value);
     }
 
@@ -31,7 +30,6 @@ public class RfcTests
     public void Create_WithLowercaseRfc_ShouldNormalizeToUppercase()
     {
         var rfc = Rfc.Create("gode561231gr8");
-
         Assert.Equal("GODE561231GR8", rfc.Value);
     }
 
@@ -39,7 +37,6 @@ public class RfcTests
     public void Create_WithSurroundingSpaces_ShouldTrim()
     {
         var rfc = Rfc.Create("  GODE561231GR8  ");
-
         Assert.Equal("GODE561231GR8", rfc.Value);
     }
 
@@ -48,7 +45,6 @@ public class RfcTests
     {
         var first = Rfc.Create("GODE561231GR8");
         var second = Rfc.Create("GODE561231GR8");
-
         Assert.Equal(first, second);
     }
 
@@ -59,7 +55,6 @@ public class RfcTests
     string value)
     {
         var rfc = Rfc.Create(value);
-
         Assert.Equal(value.Length, rfc.Value.Length);
     }
 
@@ -84,7 +79,6 @@ public class RfcTests
     {
         var first = Rfc.Create("ABC010101AB1");
         var second = Rfc.Create("GODE561231GR8");
-
         Assert.NotEqual(first, second);
     }
 
@@ -92,7 +86,6 @@ public class RfcTests
     public void ToString_ShouldReturnNormalizedRfc()
     {
         var rfc = Rfc.Create("gode561231gr8");
-
         Assert.Equal("GODE561231GR8", rfc.ToString());
     }
 }
