@@ -17,27 +17,16 @@ public sealed class Receptor
 
     public RegimenFiscal RegimenFiscal { get; private set; }
 
-    private Receptor(
-        Rfc rfc,
-        string nombre,
-        CodigoPostal domicilioFiscal,
-        RegimenFiscal regimenFiscal
-        )
+    private Receptor(Rfc rfc, string nombre, CodigoPostal domicilioFiscal, RegimenFiscal regimenFiscal)
     {
         Id = Guid.NewGuid();
-
         Rfc = rfc;
         Nombre = nombre;
         DomicilioFiscal = domicilioFiscal;
         RegimenFiscal = regimenFiscal;
-       
     }
 
-    public static Receptor Create(
-        Rfc rfc,
-        string nombre,
-        CodigoPostal domicilioFiscal,
-        RegimenFiscal regimenFiscal)
+    public static Receptor Create(Rfc rfc, string nombre, CodigoPostal domicilioFiscal, RegimenFiscal regimenFiscal)
     {
         ArgumentNullException.ThrowIfNull(rfc);
         ArgumentNullException.ThrowIfNull(domicilioFiscal);
@@ -45,17 +34,12 @@ public sealed class Receptor
 
         var nombreNormalizado = ValidarNombre(nombre);
 
-        return new Receptor(
-            rfc,
-            nombreNormalizado,
-            domicilioFiscal,
-            regimenFiscal);
+        return new Receptor(rfc, nombreNormalizado, domicilioFiscal, regimenFiscal);
     }
 
     public void ActualizarNombre(string nombre)
     {
         var nombreNormalizado = ValidarNombre(nombre);
-
         Nombre = nombreNormalizado;
     }
 
@@ -63,9 +47,7 @@ public sealed class Receptor
     {
         if (string.IsNullOrWhiteSpace(nombre))
         {
-            throw new ArgumentException(
-                "El nombre del receptor es obligatorio.",
-                nameof(nombre));
+            throw new ArgumentException("El nombre del receptor es obligatorio.", nameof(nombre));
         }
 
         return nombre.Trim();

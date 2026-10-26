@@ -29,80 +29,47 @@ public class EmisorTests
     [Theory]
     [InlineData("")]
     [InlineData("   ")]
-    public void Create_WithInvalidNombre_ShouldThrow(
-        string nombre)
+    public void Create_WithInvalidNombre_ShouldThrow(string nombre)
     {
-        Assert.Throws<ArgumentException>(() =>
-            Emisor.Create(
-                RfcValido,
-                nombre,
-                RegimenValido,
-                CpValido));
+        Assert.Throws<ArgumentException>(() => Emisor.Create(RfcValido, nombre, RegimenValido, CpValido));
     }
 
     [Fact]
     public void Create_WithNullNombre_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() =>
-            Emisor.Create(
-                RfcValido,
-                null!,
-                RegimenValido,
-                CpValido));
+        Assert.Throws<ArgumentException>(() => Emisor.Create(RfcValido, null!, RegimenValido, CpValido));
     }
 
     [Fact]
     public void Create_WithSurroundingSpaces_ShouldTrimNombre()
     {
-        var emisor = Emisor.Create(
-            RfcValido,
-            "  EMPRESA DE PRUEBA  ",
-            RegimenValido,
-            CpValido);
-
+        var emisor = Emisor.Create(RfcValido,"  EMPRESA DE PRUEBA  ", RegimenValido, CpValido);
         Assert.Equal("EMPRESA DE PRUEBA", emisor.Nombre);
     }
 
     [Fact]
     public void Create_WithNullRegimenFiscal_ShouldThrow()
     {
-        Assert.Throws<ArgumentNullException>(() =>
-            Emisor.Create(
-                RfcValido,
-                "EMPRESA DE PRUEBA",
-                null!,
-                CpValido));
+        Assert.Throws<ArgumentNullException>(() => Emisor.Create(RfcValido, "EMPRESA DE PRUEBA", null!, CpValido));
     }
 
     [Fact]
     public void Create_WithNullRfc_ShouldThrow()
     {
-        Assert.Throws<ArgumentNullException>(() =>
-            Emisor.Create(
-                null!,
-                "EMPRESA DE PRUEBA",
-                RegimenValido,
-                CpValido));
+        Assert.Throws<ArgumentNullException>(() => Emisor.Create(null!, "EMPRESA DE PRUEBA", RegimenValido, CpValido));
     }
 
     [Fact]
     public void Create_WithNullCodigoPostal_ShouldThrow()
     {
-        Assert.Throws<ArgumentNullException>(() =>
-            Emisor.Create(
-                RfcValido,
-                "EMPRESA DE PRUEBA",
-                RegimenValido,
-                null!));
+        Assert.Throws<ArgumentNullException>(() => Emisor.Create(RfcValido, "EMPRESA DE PRUEBA", RegimenValido, null!));
     }
 
     [Fact]
     public void UpdateNombre_WithValidValue_ShouldUpdate()
     {
         var emisor = CrearEmisorValido();
-
         emisor.ActualizarNombre("NUEVA RAZON SOCIAL");
-
         Assert.Equal("NUEVA RAZON SOCIAL", emisor.Nombre);
     }
 
@@ -110,30 +77,21 @@ public class EmisorTests
     public void UpdateNombre_WithInvalidValue_ShouldPreserveOriginal()
     {
         var emisor = CrearEmisorValido();
-
-        Assert.Throws<ArgumentException>(() =>
-            emisor.ActualizarNombre(""));
-
+        Assert.Throws<ArgumentException>(() => emisor.ActualizarNombre(""));
         Assert.Equal("EMPRESA DE PRUEBA", emisor.Nombre);
     }
 
     private static Emisor CrearEmisorValido()
     {
-        return Emisor.Create(
-            RfcValido,
-            "EMPRESA DE PRUEBA",
-            RegimenValido,
-            CpValido);
+        return Emisor.Create(RfcValido, "EMPRESA DE PRUEBA", RegimenValido, CpValido);
     }
 
     [Fact]
     public void UpdateRegimenFiscal_WithValidValue_ShouldUpdate()
     {
         var emisor = CrearEmisorValido();
-
         var nuevoRegimen = RegimenFiscal.Create("603");
         emisor.ActualizarRegimenFiscal(nuevoRegimen);
-
         Assert.Equal(nuevoRegimen, emisor.RegimenFiscal);
     }
 
@@ -142,9 +100,7 @@ public class EmisorTests
     {
         var emisor = CrearEmisorValido();
         var nuevoCodigoPostal = CodigoPostal.Create("01000");
-
         emisor.ActualizarCodigoPostal(nuevoCodigoPostal);
-
         Assert.Equal(nuevoCodigoPostal, emisor.CodigoPostal);
     }
 
@@ -153,10 +109,7 @@ public class EmisorTests
     {
         var emisor = CrearEmisorValido();
         var codigoPostalOriginal = emisor.CodigoPostal;
-
-        Assert.Throws<ArgumentNullException>(() =>
-            emisor.ActualizarCodigoPostal(null!));
-
+        Assert.Throws<ArgumentNullException>(() => emisor.ActualizarCodigoPostal(null!));
         Assert.Equal(codigoPostalOriginal, emisor.CodigoPostal);
     }
 
@@ -165,7 +118,6 @@ public class EmisorTests
     {
         var first = CrearEmisorValido();
         var second = CrearEmisorValido();
-
         Assert.NotEqual(first.Id, second.Id);
     }
 }
